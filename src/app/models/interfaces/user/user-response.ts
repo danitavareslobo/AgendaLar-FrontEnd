@@ -11,6 +11,7 @@ export interface Result {
 
 export interface UserToken {
   id: string;
+  name: string;
   email: string;
   claims: Claim[];
 }

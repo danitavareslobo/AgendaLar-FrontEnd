@@ -1,27 +1,38 @@
-# AgendaLar
+<h1 align="center"> Agenda Lar </h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
+<br>
 
-## Development server
+Esse projeto faz parte da avaliação do candidato ao processo seletivo da [**Cooperativa Lar**](https://www.lar.ind.br).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<br>
 
-## Code scaffolding
+> É um software para gestão de uma agenda telêfonica. Nesse repositório está a aplicação FrontEnd do software, construída utilizando o framework Angular versão 15.1.6. Consumindo uma API no BackEnd. 
+Será possível cadastrar, listar, editar e deletar pessoas, e seus telefones para contato.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<br>
 
-## Build
+## Técnologias utilizadas
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+`Angular` `HTML` `SCSS` `TypeScript` ` JavaScript` `PrimeNg` 
 
-## Running unit tests
+<br>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Status do Projeto
 
-## Running end-to-end tests
+> **EM DESENVOLVIMENTO**, aguardando conclusão do BackEnd ⚙️⚙️
+>
+> Repositório do Projeto BackEnd: https://github.com/danitavareslobo/AgendaLar-BackEnd
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+<br>
 
-## Further help
+## Autoria do Projeto
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<div>
+
+> 
+> <a href="https://github.com/danitavareslobo"><img src="../AgendaLar-FrontEnd/src/assets/dani-foto-perfil.jpg" width= 120 target="_blank"></a>
+<a href="https://github.com/danitavareslobo"> <p >  Daniele Tavares Lobo </p></a>
+
+</div>
+
+
