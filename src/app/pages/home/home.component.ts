@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
 import { LoginUserRequest } from 'src/app/models/interfaces/user/login-user-request';
@@ -31,7 +32,8 @@ export class HomeComponent {
     private formBuilder: FormBuilder,
     private service: UserService,
     private cookieService: CookieService,
-    private messageService: MessageService) {}
+    private messageService: MessageService,
+    private router: Router) {}
 
   onSubmitLogin(){
     if(this.loginForm.valid){
@@ -43,6 +45,7 @@ export class HomeComponent {
             this.cookieService.set('token', response.result.accessToken);
             this.loginForm.reset();
 
+            this.router.navigate(['/dashboard']);
             this.messageService.add({
               severity: 'success',
               summary: 'Sucesso',
