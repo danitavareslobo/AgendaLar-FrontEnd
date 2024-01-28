@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 import { PersonResponse } from 'src/app/models/interfaces/person/person-response';
 import { PersonDataTransferService } from 'src/app/services/people/person-data-transfer.service';
 import { PersonService } from 'src/app/services/people/person.service';
@@ -9,7 +10,8 @@ import { PersonService } from 'src/app/services/people/person.service';
   templateUrl: './people-home.component.html',
   styleUrls: []
 })
-export class PeopleHomeComponent implements OnInit {
+export class PeopleHomeComponent implements OnInit, OnDestroy {
+  private destroy$: Subject<void> = new Subject<void>();
   public peopleList : Array<PersonResponse> = [];
 
   constructor(
@@ -34,7 +36,11 @@ export class PeopleHomeComponent implements OnInit {
   }
 
   getPeopleApi() : void {
-    this.personService.getPeople().subscribe({
+    this.personService.getPeople()
+    .pipe(
+      takeUntil(this.destroy$)
+    )
+    .subscribe({
       next: (response) => {
         this.peopleList = response;
         this.personDataTransferService.setPeople(response);
@@ -48,5 +54,9 @@ export class PeopleHomeComponent implements OnInit {
         console.log("Erro getPeopleApi", error);
       }
     });
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

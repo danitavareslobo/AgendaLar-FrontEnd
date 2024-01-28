@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
+import { Subject, takeUntil } from 'rxjs';
 import { LoginUserRequest } from 'src/app/models/interfaces/user/login-user-request';
 import { SignupUserRequest } from 'src/app/models/interfaces/user/signup-user-request';
 import { UserResponse } from 'src/app/models/interfaces/user/user-response';
@@ -13,8 +14,10 @@ import { UserService } from 'src/app/services/users/user.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnDestroy{
+  private destroy$: Subject<void> = new Subject<void>();
   loginCard = true;
+
   loginForm = this.formBuilder.group({
     email: ['', Validators.required],
     password: ['', Validators.required]
@@ -37,7 +40,11 @@ export class HomeComponent {
 
   onSubmitLogin(){
     if(this.loginForm.valid){
-      this.service.login(this.loginForm.value as LoginUserRequest).subscribe({
+      this.service.login(this.loginForm.value as LoginUserRequest)
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe({
         next: (response: UserResponse) => {
           if(response){
 
@@ -70,7 +77,11 @@ export class HomeComponent {
   onSubmitSignup(){
     if(this.signupForm.valid){
 
-      this.service.signup(this.signupForm.value as SignupUserRequest).subscribe({
+      this.service.signup(this.signupForm.value as SignupUserRequest)
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe({
         next: (response) =>{
           this.messageService.add({
             severity: 'success',
@@ -92,5 +103,10 @@ export class HomeComponent {
         }
       })
     };
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
