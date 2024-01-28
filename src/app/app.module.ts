@@ -14,8 +14,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppComponent } from './app.component';
 import { FullComponent } from './layouts/full/full.component';
 import { ContentComponent } from './layouts/content/content.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MessageService } from 'primeng/api';
@@ -25,8 +23,6 @@ import { MessageService } from 'primeng/api';
     AppComponent,
     FullComponent,
     ContentComponent,
-    LoginComponent,
-    RegisterComponent,
     NotFoundComponent,
     HomeComponent
   ],

@@ -5,8 +5,17 @@ import { HomeComponent } from './pages/home/home.component';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
     component: HomeComponent
   },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+  }
 ];
 
 @NgModule({
