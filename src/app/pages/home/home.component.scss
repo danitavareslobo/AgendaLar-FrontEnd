@@ -1,0 +1,19 @@
+.grid {
+  background-image: url(../../../assets/lar-home.jpg) !important;
+  background-size: cover !important;
+  background-position: center;
+  background-repeat: no-repeat !important;
+  height: 100vmin;
+}
+
+@media (min-width: 1400px) {
+  .grid{
+    background-position: top;
+  }
+}
+
+@media (max-width: 1000px) {
+  .grid{
+    height: 100vmax;
+  }
+}
