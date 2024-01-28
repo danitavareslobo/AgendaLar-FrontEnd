@@ -12,17 +12,13 @@ import { ToastModule } from 'primeng/toast';
 import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from './app.component';
-import { FullComponent } from './layouts/full/full.component';
-import { ContentComponent } from './layouts/content/content.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { HomeComponent } from './pages/home/home.component';
+import { NotFoundComponent } from './modules/not-found/not-found.component';
+import { HomeComponent } from './modules/home/home.component';
 import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FullComponent,
-    ContentComponent,
     NotFoundComponent,
     HomeComponent
   ],

@@ -6,7 +6,7 @@ import { MessageService } from 'primeng/api';
 import { LoginUserRequest } from 'src/app/models/interfaces/user/login-user-request';
 import { SignupUserRequest } from 'src/app/models/interfaces/user/signup-user-request';
 import { UserResponse } from 'src/app/models/interfaces/user/user-response';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/users/user.service';
 
 @Component({
   selector: 'app-home',
@@ -45,12 +45,12 @@ export class HomeComponent {
             this.cookieService.set('token', response.result.accessToken);
             this.loginForm.reset();
 
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/people']);
             this.messageService.add({
               severity: 'success',
               summary: 'Sucesso',
               detail: `Bem vindo, ${response.result.userToken.name}!`,
-              life: 1500
+              life: 2500
             });
           }
         },

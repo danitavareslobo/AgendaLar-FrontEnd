@@ -7,24 +7,25 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 
-import { DashboardHomeComponent } from './page/dashboard-home/dashboard-home.component';
-import { DashboardRoutes } from './dashboard.routing';
+
+import { PeopleRoutes } from './people.routing';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ToastModule } from 'primeng/toast';
 import { CardModule } from 'primeng/card';
 import { MessageService } from 'primeng/api';
 import { CookieService } from 'ngx-cookie-service';
+import { PeopleHomeComponent } from './pages/home/people-home.component';
 
 
 @NgModule({
   declarations: [
-    DashboardHomeComponent
+    PeopleHomeComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(DashboardRoutes),
+    RouterModule.forChild(PeopleRoutes),
     // PrimeNg
     SidebarModule,
     ButtonModule,
@@ -38,4 +39,4 @@ import { CookieService } from 'ngx-cookie-service';
     CookieService
   ],
 })
-export class DashboardModule { }
+export class PeopleModule { }
