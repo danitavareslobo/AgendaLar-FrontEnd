@@ -15,7 +15,7 @@
         </div>
 
         <div class="flex justify-content-center align-content-center text-align-center mt-3">
-          <input type="password" formGroupName="password" pInputText placeholder="Senha" [style]="{ width: '420px' }">
+          <input type="password" formControlName="password" pInputText placeholder="Senha" [style]="{ width: '420px' }">
         </div>
 
         <div class="card flex justify-content-center mt-5">
@@ -26,7 +26,7 @@
         class="flex justify-content-center align-content-center text-align-center mt-3 text-grey-600 font-semibold"
         style="cursor: pointer;"
         (click)="loginCard = !loginCard"
-        >Criar Conta</span>
+        > Criar Conta </span>
 
       </p-card>
       </form>
@@ -45,11 +45,11 @@
         </div>
 
         <div class="flex justify-content-center align-content-center text-align-center mt-3">
-          <input type="text" formControlName="cpf" pInputText placeholder="CPF" [style]="{ width: '420px' }">
+          <input type="text" formControlName="socialNumber" pInputText placeholder="CPF" [style]="{ width: '420px' }">
         </div>
 
         <div class="flex justify-content-center align-content-center text-align-center mt-3">
-          <input type="email" pInputText placeholder="Email" [style]="{ width: '420px' }">
+          <input type="email" pInputText formControlName="email" placeholder="Email" [style]="{ width: '420px' }">
         </div>
 
         <div class="flex justify-content-center align-content-center text-align-center mt-3 gap-2">
@@ -65,7 +65,7 @@
         class="flex justify-content-center align-content-center text-align-center mt-3 text-grey-600 font-semibold"
         style="cursor: pointer;"
         (click)="loginCard = !loginCard"
-        >Voltar para Login</span>
+        > Voltar para Login </span>
 
       </p-card>
       </form>

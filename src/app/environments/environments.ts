@@ -1,5 +1,6 @@
 export const environment = {
-  production: false
-};
+  production: true,
+  API_URL: 'https://localhost:7233/api'
+}
 
-export const API_PATH = "https://localhost:7233/api";
+
