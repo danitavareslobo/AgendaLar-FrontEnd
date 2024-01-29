@@ -14,7 +14,10 @@ export class UserService {
   private API_URL = environment.API_URL;
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': '*',
     })
   };
 

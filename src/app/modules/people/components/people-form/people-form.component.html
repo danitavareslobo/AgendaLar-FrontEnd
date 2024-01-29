@@ -4,12 +4,16 @@
       <input pInputText placeholder="Nome" formControlName="name" />
       <input pInputText placeholder="E-mail" formControlName="email">
       <input pInputText placeholder="CPF" formControlName="socialNumber">
-      <p-calendar placeholder="Data de Nascimento" formControlName="birthDate" dateFormat="dd/MM/yy"></p-calendar>
+      <p-calendar
+          appendTo="body"
+          placeholder="Data de Nascimento"
+          formControlName="birthDate"
+          dateFormat="dd/MM/yy"></p-calendar>
 
-      <div class="row">
-        <span class="col-6">Ativo</span>
+      <div class="row" *ngIf="personAction.event.action !== addEvent">
+        <span class="">Ativo</span>
         <p-inputSwitch
-          [hidden]="personAction.event.action == addEvent"
+          appendTo="body"
           formControlName="ativo">
         </p-inputSwitch>
       </div>

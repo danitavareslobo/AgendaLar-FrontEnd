@@ -19,6 +19,9 @@ export class PhoneService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': '*',
       'Authorization': `Bearer ${this.JWT_TOKEN}`
     })
   };
@@ -50,7 +53,12 @@ export class PhoneService {
 
   editPhone(request: EditPhoneRequest): Observable<DefaultResponse<PhoneResponse>> {
     return this.httpClient
-                .put<any>(`${this.API_URL}/telefones`, request, this.httpOptions);
+                .put<any>(`${this.API_URL}/telefones`, {
+                  id: request.id,
+                  personId: request.personId,
+                  number: request.number,
+                  type: Number(request.type)
+                }, this.httpOptions);
   }
 
   deletePhone(id: string) : Observable<boolean> {

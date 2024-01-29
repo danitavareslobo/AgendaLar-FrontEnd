@@ -3,12 +3,20 @@
     <div class="card flex flex-column md:flex-column gap-3">
       <input pInputText placeholder="Número" formControlName="number" />
       <p-dropdown
+        appendTo="body"
         styleClass="w-full"
         placeholder="Tipo telefone"
-        optionLabel="value"
-        optionValue="key"
-        [options]="phoneTypeOptions"
-        [(ngModel)]="selectedType">
+        [options]="types"
+        [(ngModel)]="selectedType.value"
+        selectId="type"
+        optionLabel="label"
+        optionValue="value"
+        formControlName="type">
+        <ng-template let-type pTemplate="item">
+          <div class="flex align-items-center gap-2">
+              <div>{{ type.value | phoneTypeDescription }}</div>
+          </div>
+        </ng-template>
       </p-dropdown>
       <div class="flex flex-row justify-content-center align-content-center align-items-center">
         <p-button

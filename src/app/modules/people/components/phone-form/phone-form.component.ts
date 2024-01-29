@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormArrayName, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
@@ -7,8 +7,11 @@ import { ActionEvent } from 'src/app/models/base/action-event';
 import { DefaultActionEvent } from 'src/app/models/base/default-action-event';
 import { EditPhoneRequest } from 'src/app/models/interfaces/phone/edit-phone-request';
 import { NewPhoneRequest } from 'src/app/models/interfaces/phone/new-phone-request';
-import { EnumOption, PhoneResponse, PhoneType } from 'src/app/models/interfaces/phone/phone-response';
+import { PhoneResponse } from 'src/app/models/interfaces/phone/phone-response';
+import { PhoneType } from 'src/app/models/interfaces/phone/phone-type';
+import { EnumOption } from 'src/app/models/base/enum-option';
 import { PhoneService } from 'src/app/services/phones/phone.service';
+import { PhoneTypeDescriptionPipe } from 'src/app/pipes/phone-type/phone-type-description.pipe';
 
 @Component({
   selector: 'app-phone-form',
@@ -19,7 +22,8 @@ export class PhoneFormComponent implements OnInit, OnDestroy {
   private id: string = '';
   private personId: string = '';
   public phoneForm = this.formBuilder.group({
-    number: ['', Validators.required]
+    number: ['', Validators.required],
+    type: new FormControl<EnumOption | null>(null)
   });
   public phoneAction!:{
     event: DefaultActionEvent,
@@ -27,8 +31,8 @@ export class PhoneFormComponent implements OnInit, OnDestroy {
     closeDialog: () => void
   };
   public addEvent = ActionEvent.ADD;
-  public selectedType!: PhoneType;
-  public phoneTypeOptions: EnumOption[] = Object.keys(PhoneType).map(key => ({ label: PhoneType[Number(key)], value: key })) as EnumOption[];
+  public selectedType!: EnumOption;
+  public types: EnumOption[] = [];
 
   constructor(
     private phoneService: PhoneService,
@@ -38,27 +42,56 @@ export class PhoneFormComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-
+    this.types = Object.keys(PhoneType).filter(k => !isNaN(Number(k))).map(k => {
+      return { label: PhoneType[Number(k)], value: Number(k) };
+    });
     this.personId = this.dynamicDialogConfig.data.phone?.personId || '';
     this.id = this.dynamicDialogConfig.data.phone?.id || '';
+    this.phoneAction = this.dynamicDialogConfig.data;
 
-    if(this.id){
-      this.phoneForm.patchValue(this.dynamicDialogConfig.data.phone);
-      this.selectedType = this.dynamicDialogConfig.data.phone.type;
-      // this.phoneService.getPhone(this.id).subscribe({
-      //   next: (response) => {
-      //     console.log("res", response);
-      //     this.phoneForm.patchValue({
-      //       number: response.result.number
-      //     });
-      //     this.selectedType = response.result.type;
-      //   },
-      //   error: (error) => {
-      //     console.log(error);
-      //   }
-      // });
+    if(this.id && this.id !== 'empty'){
+      this.phoneService.getPhone(this.id)
+        .subscribe({
+          next: (response) => {
+            console.log(response.result);
+            this.phoneForm.patchValue({
+              number: response.result.number,
+              type: PhoneTypeDescriptionPipe.prototype.transform(response.result.type.toString())
+            });
+            this.selectedType = {
+              label: PhoneTypeDescriptionPipe.prototype.transform(response.result.type.toString()),
+              value:  response.result.type
+            };
+            //set selected dropdown value
+
+            //get enum phoneType description
+            let phoneType = PhoneType[response.result.type];
+
+            this.phoneForm.controls.type.setValue({
+              label: phoneType,
+              value: response.result.type
+            });
+
+            console.log("phoneType", phoneType);
+            console.log(this.selectedType);
+            console.log("TIPO", this.phoneForm.value.type);
+          },
+          error: (error) => {
+            console.log(error);
+            this.messageService.add({ severity: 'error', summary: 'Erro', detail: "Erro ao buscar telefone" });
+          }
+        });
     }
-
+    else {
+      this.selectedType = {
+        label: PhoneTypeDescriptionPipe.prototype.transform(PhoneType.CELULAR.toString()),
+        value:  PhoneType.CELULAR
+      };
+      this.phoneForm.controls.type.setValue({
+        label: PhoneType.CELULAR.toString(),
+        value: PhoneType.CELULAR
+      });
+    }
   }
 
   submit(): void {
@@ -72,16 +105,16 @@ export class PhoneFormComponent implements OnInit, OnDestroy {
     switch(this.phoneAction.event.action){
       case ActionEvent.ADD:
         return {
-          personId: 'new',
+          personId: this.personId,
           number: this.phoneForm.value.number as string,
-          type: this.selectedType
+          type: this.mapPhoneType(this.phoneForm.value.type) as PhoneType
         };
       case ActionEvent.EDIT:
         return {
           id: this.id,
           personId: this.personId,
           number: this.phoneForm.value.number as string,
-          type: this.selectedType
+          type: this.mapPhoneType(this.phoneForm.value.type) as PhoneType
         };
       default:
         return undefined;
@@ -147,6 +180,22 @@ export class PhoneFormComponent implements OnInit, OnDestroy {
             this.messageService.add({ severity: 'error', summary: 'Erro', detail: "Erro ao alterar telefone" });
           }
         });
+  }
+
+  mapPhoneType(type: string | EnumOption | undefined | null) : PhoneType {
+
+    if(!type) return PhoneType.Other;
+
+    switch(type){
+      case '1':
+        return PhoneType.Mobile;
+      case '3':
+        return PhoneType.Commercial;
+      case '2':
+        return PhoneType.Home;
+      default:
+        return PhoneType.Other;
+    }
   }
 
   ngOnDestroy(): void {

@@ -1,4 +1,4 @@
-import { PhoneType } from "./phone-response";
+import { PhoneType } from "./phone-type";
 
 export interface EditPhoneRequest {
   id: string;

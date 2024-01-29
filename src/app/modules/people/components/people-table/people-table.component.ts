@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActionEvent } from 'src/app/models/base/action-event';
 import { DefaultActionEvent } from 'src/app/models/base/default-action-event';
 import { PersonResponse } from 'src/app/models/interfaces/person/person-response';
-import { PhoneType } from 'src/app/models/interfaces/phone/phone-response';
+import { PhoneType } from 'src/app/models/interfaces/phone/phone-type';
 
 @Component({
   selector: 'app-people-table',

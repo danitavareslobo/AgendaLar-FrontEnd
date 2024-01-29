@@ -30,13 +30,15 @@ import { CalendarModule } from 'primeng/calendar';
 import { ChipsModule } from 'primeng/chips';
 import { PhoneFormComponent } from './components/phone-form/phone-form.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { PhoneTypeDescriptionPipe } from 'src/app/pipes/phone-type/phone-type-description.pipe';
 
 @NgModule({
   declarations: [
     PeopleHomeComponent,
     PeopleTableComponent,
     PeopleFormComponent,
-    PhoneFormComponent
+    PhoneFormComponent,
+    PhoneTypeDescriptionPipe
   ],
   imports: [
     CommonModule,

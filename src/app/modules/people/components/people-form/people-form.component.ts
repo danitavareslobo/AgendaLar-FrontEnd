@@ -12,7 +12,7 @@ import { NewPersonRequest } from 'src/app/models/interfaces/person/new-person-re
 import { PersonResponse } from 'src/app/models/interfaces/person/person-response';
 import { EditPhoneRequest } from 'src/app/models/interfaces/phone/edit-phone-request';
 import { NewPhoneRequest } from 'src/app/models/interfaces/phone/new-phone-request';
-import { PhoneType } from 'src/app/models/interfaces/phone/phone-response';
+import { PhoneType } from 'src/app/models/interfaces/phone/phone-type';
 import { PersonService } from 'src/app/services/people/person.service';
 
 @Component({

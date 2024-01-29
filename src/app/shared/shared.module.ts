@@ -10,7 +10,6 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { ToolbarNavigationComponent } from './components/toolbar-navigation/toolbar-navigation.component';
 import { CircleLetterComponent } from './components/circle-letter/circle-letter.component';
 
-
 @NgModule({
   declarations: [
     ToolbarNavigationComponent,

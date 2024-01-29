@@ -223,7 +223,7 @@ export class PeopleHomeComponent implements OnInit, OnDestroy {
       maximizable: true,
       data: {
         event: event,
-        person: {},
+        phone: {personId : event.name},
         closeDialog: () => {
           this.ref.close();
         }

@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  API_URL: 'https://localhost:7233/api'
+  API_URL: 'https://agenda-back.danitavares.dev/api'
 }
 
 

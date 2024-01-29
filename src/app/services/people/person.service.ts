@@ -18,6 +18,9 @@ export class PersonService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': '*',
       'Authorization': `Bearer ${this.JWT_TOKEN}`
     })
   };

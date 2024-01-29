@@ -1,4 +1,4 @@
-<div class="flex justify-content-center mt-5">
+<div class="flex justify-content-center mt-5" style="overflow-y: auto;">
 <p-card
       styleClass="shadow-3 p-3 text-red-600"
       class="text-center"
@@ -105,10 +105,10 @@
                               pRipple
                               class="p-button-rounded"
                               styleClass="p-button-info"
-                              pTooltip="Adicionar Pessoa"
+                              pTooltip="Adicionar telefone"
                               tooltipPosition="top"
                               icon="pi pi-plus"
-                              (click)="handlePhoneEvent(addEvent)">
+                              (click)="handlePhoneEvent(addEvent, 'empty', person.id)">
                             </button>
                             </div>
                           </th>
@@ -139,7 +139,7 @@
                                   class="p-button-rounded p-button-danger"
                                   pTooltip="Remover telefone"
                                   tooltipPosition="top"
-                                  (click)="handlePhoneEvent(deleteEvent, phone?.personId, phone?.number)">
+                                  (click)="handlePhoneEvent(deleteEvent, phone?.id, phone?.number)">
                                 </button>
                               </div>
                             </td>
