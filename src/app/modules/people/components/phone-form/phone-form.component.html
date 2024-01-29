@@ -1,0 +1,22 @@
+<div>
+  <form [formGroup]="phoneForm" (ngSubmit)="submit()">
+    <div class="card flex flex-column md:flex-column gap-3">
+      <input pInputText placeholder="Número" formControlName="number" />
+      <p-dropdown
+        styleClass="w-full"
+        placeholder="Tipo telefone"
+        optionLabel="value"
+        optionValue="key"
+        [options]="phoneTypeOptions"
+        [(ngModel)]="selectedType">
+      </p-dropdown>
+      <div class="flex flex-row justify-content-center align-content-center align-items-center">
+        <p-button
+          [disabled]="!phoneForm.valid"
+          type="submit"
+          label="Concluir">
+        </p-button>
+      </div>
+    </div>
+  </form>
+</div>

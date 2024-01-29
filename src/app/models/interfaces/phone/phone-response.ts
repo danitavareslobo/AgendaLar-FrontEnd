@@ -9,5 +9,11 @@ export interface PhoneResponse {
 export enum PhoneType {
   Mobile = 1,
   Home = 2,
-  Commercial = 3
+  Commercial = 3,
+  Other = 4
+}
+
+export interface EnumOption {
+  label: string;
+  value: string;
 }

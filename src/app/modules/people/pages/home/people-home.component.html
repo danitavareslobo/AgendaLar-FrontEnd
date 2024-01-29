@@ -1,1 +1,11 @@
 <app-toolbar-navigation></app-toolbar-navigation>
+<app-people-table
+  [people]="peopleList"
+  (personEvent)="handlePersonEvent($event)"
+  (phoneEvent)="handlePhoneEvent($event)">
+</app-people-table>
+<p-confirmDialog
+  class="excludeDialog"
+  [style]="{width: '40vw'}"
+  acceptButtonStyleClass="p-button-danger">
+</p-confirmDialog>

@@ -8,11 +8,13 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ToolbarNavigationComponent } from './components/toolbar-navigation/toolbar-navigation.component';
+import { CircleLetterComponent } from './components/circle-letter/circle-letter.component';
 
 
 @NgModule({
   declarations: [
-    ToolbarNavigationComponent
+    ToolbarNavigationComponent,
+    CircleLetterComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { ToolbarNavigationComponent } from './components/toolbar-navigation/tool
     ButtonModule
   ],
   exports:[
-    ToolbarNavigationComponent
+    ToolbarNavigationComponent,
+    CircleLetterComponent
   ],
   providers: [DialogService],
 })

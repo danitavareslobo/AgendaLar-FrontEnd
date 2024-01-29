@@ -1,0 +1,32 @@
+<div>
+  <form [formGroup]="personForm" (ngSubmit)="submit()">
+    <div class="card flex flex-column md:flex-column gap-3">
+      <input pInputText placeholder="Nome" formControlName="name" />
+      <input pInputText placeholder="E-mail" formControlName="email">
+      <input pInputText placeholder="CPF" formControlName="socialNumber">
+      <p-calendar placeholder="Data de Nascimento" formControlName="birthDate" dateFormat="dd/MM/yy"></p-calendar>
+
+      <div class="row">
+        <span class="col-6">Ativo</span>
+        <p-inputSwitch
+          [hidden]="personAction.event.action == addEvent"
+          formControlName="ativo">
+        </p-inputSwitch>
+      </div>
+
+      <p-chips
+        pTooltip="Digite o número do telefone e pressione a tecla Enter"
+        tooltipPosition="left"
+        formControlName="phones"
+        placeholder="Telefones">
+      </p-chips>
+      <div class="flex flex-row justify-content-center align-content-center align-items-center">
+        <p-button
+          [disabled]="!personForm.valid"
+          type="submit"
+          label="Concluir">
+        </p-button>
+      </div>
+    </div>
+  </form>
+</div>

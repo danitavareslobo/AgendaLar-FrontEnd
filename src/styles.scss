@@ -91,6 +91,7 @@
     font-family: sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
       "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
       "Helvetica Neue", sans-serif;
+      overflow-x: hidden;
   }
 
   /* make sure to set some focus styles for accessibility */
@@ -163,6 +164,30 @@
   margin-top: 25vh;
 }
 
+.mt-5 {
+  margin-top: 12.5vh;
+}
+
+.mt-4 {
+  margin-top: 10vh;
+}
+
+.mt-3 {
+  margin-top: 7vh;
+}
+
+.mt-2 {
+  margin-top: 5vh;
+}
+
+.mt-1 {
+  margin-top: 2vh;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 .exact_route {
  :host ::ng-deep .p-dropdown {
     width: 50%;
@@ -176,3 +201,22 @@
   border: 1px solid gray !important;
   box-shadow: 0 0 8px 2px rgb(94, 94, 94) !important;
 }
+
+.excludeDialog .p-confirm-dialog-icon {
+  color: red;
+}
+
+.color-red {
+  color: red;
+}
+
+.content
+ {
+  position: absolute;
+  background-color: #f5f5f5;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+ }
+
+
